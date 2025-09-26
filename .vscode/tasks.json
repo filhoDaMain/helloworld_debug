@@ -1,0 +1,41 @@
+{
+    "version": "2.0.0",
+
+    "tasks": [
+        // Start Debugging Session
+        {
+            "label": "copy-binary-to-target",
+            "type": "shell",
+            "command": "scp ${workspaceFolder}/bin/helloworld pi:",
+            "group": "build",
+            "isBackground": false
+        },
+        {
+            "label": "start-gdbserver",
+            "type": "shell",
+            "command": "ssh pi 'gdbserver :2001 helloworld > /dev/null 2>&1 &'",
+            "group": "build",
+            "isBackground": false,
+            "dependsOn": "copy-binary-to-target"
+        },
+
+        // End Debugging Session
+        {
+            "label": "stop-server",
+            "type": "shell",
+            "command": "ssh pi 'killall gdbserver > /dev/null 2>&1 &'",
+            "group": "build",
+            "isBackground": false
+        },
+        {
+            "label": "clean-debug-session",
+            "type": "shell",
+            "command": "ssh pi 'rm -rf helloworld'",
+            "group": "build",
+            "isBackground": false,
+            "dependsOn": "stop-server"
+        }
+
+
+    ]
+}

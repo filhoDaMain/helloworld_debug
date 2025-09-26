@@ -1,0 +1,35 @@
+{
+    "version": "0.2.0",
+
+    "configurations": [
+        {
+            "name": "(gdb) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+
+            // Debugger and Remote Target configuration
+            "MIMode": "gdb",
+            "miDebuggerPath": "/opt/pokytos/1.0.0/sysroots/aarch64-pokytossdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-gdb",
+            "miDebuggerArgs": "-x ${workspaceFolder}/.vscode/gdbinit",
+            "miDebuggerServerAddress": "pi:2001",
+
+            // Start / End debug session tasks
+            "preLaunchTask": "start-gdbserver",
+            "postDebugTask": "clean-debug-session",
+
+            // Program with debugging symbols
+            "program": "${workspaceFolder}/bin/helloworld",
+            "stopAtEntry": true,
+            "args": [],
+
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}

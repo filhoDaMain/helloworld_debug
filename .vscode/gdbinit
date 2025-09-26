@@ -1,0 +1,9 @@
+define setup_sources
+    set sysroot /opt/pokytos/1.0.0/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/
+end
+
+define connect
+    target remote pi:2001
+end
+
+define setup_sources
