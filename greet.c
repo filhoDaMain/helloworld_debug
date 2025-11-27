@@ -1,10 +1,16 @@
 #include "greet.h"
 #include <stdio.h>
 
-int greetings(const char* str, int val)
+int greet(const char* msg, int n_arg, char **arg)
 {
-    // Try a breakpoint here
-    printf("%i: Greetings fellow %s\n", val, str);
+    static int i = 0;
+    printf("%i: A very grungy way of saying %s to\n", i, msg);
 
-    return val;
+    for (int n = 0; n < n_arg; n++)
+    {
+        printf("   - %s\n", arg[n]);
+    }
+    printf("\n");
+
+    return (i++);
 }
